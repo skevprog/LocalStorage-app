@@ -21,27 +21,30 @@
 
    <main class="container">
 
-      <form onsubmit="showText(event)" class="d-flex flex-column mx-auto col-8 col-md-4">
+      <div class="mx-auto col-12 col-md-6">
 
-         <div class="form-group">
-            <label for="tweet">What's happening?</label>
-            <textarea class="form-control" id="tweet" rows="3"></textarea>
-         </div>
+         <form onsubmit="showText(event)" >
 
-         <input type="submit" class="btn btn-primary col-12 col-lg-4 align-self-end" value="Tweet" />
+            <div class="form-group">
+               <label for="tweet">What's happening?</label>
+               <textarea class="form-control" id="tweet" rows="2"></textarea>
+            </div>
 
-      </form>
+            <input type="submit" class="btn btn-primary col-12 col-md-4 offset-md-8" value="Tweet" />
 
-      <!-- <section class="col-md-4 mx-auto">
-         <h2>My Tweets</h2> -->
+         </form>
 
-         <!-- <div class=" mx-auto"> -->
-            <ul id="tweetList" class="list-group">
+         <section class="separation">
+            
+            <h2 class="text-center list-title">My Tweets</h2>
+
+            <ul id="tweetList">
 
             </ul>
-         <!-- </div>
-      </section> -->
 
+         </section>
+
+      </div>
    </main>
 
    <footer class="footer ">

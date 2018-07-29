@@ -3,12 +3,27 @@ const tweetList = document.getElementById('tweetList');
 
 function showText(e) {
    e.preventDefault();
+
    let tweet = textArea.value;
    let li = document.createElement('li');
 
    li.textContent = tweet;
    li.classList.add('list-group-item');
    tweetList.appendChild(li);
+   textArea.value = '';
 
-   console.log(tweet);
+   addTweetLocalStorage(tweet);
+   
 }
+
+function getTweetsLocalStorage() {
+   let tweets;
+   return localStorage.getItem('tweets') ? JSON.parse(localStorage.getItem('tweets')) : tweets=[];
+}
+
+function addTweetLocalStorage(tweet) {
+   let tweets = getTweetsLocalStorage();
+   tweets.push(tweet);
+   localStorage.setItem('tweets', JSON.stringify(tweets))
+}
+
