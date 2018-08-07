@@ -13,12 +13,12 @@ function showText(e) {
    textArea.value = '';
 
    addTweetLocalStorage(tweet);
-   
+
 }
 
 function getTweetsLocalStorage() {
    let tweets;
-   return localStorage.getItem('tweets') ? JSON.parse(localStorage.getItem('tweets')) : tweets=[];
+   return localStorage.getItem('tweets') ? JSON.parse(localStorage.getItem('tweets')) : tweets = [];
 }
 
 function addTweetLocalStorage(tweet) {
@@ -27,3 +27,19 @@ function addTweetLocalStorage(tweet) {
    localStorage.setItem('tweets', JSON.stringify(tweets))
 }
 
+function displayTweets() {
+   let tweets = getTweetsLocalStorage();
+   let li;
+
+   tweets.forEach(tweet => {
+
+      li = document.createElement('li');
+      li.innerText = tweet;
+      li.classList.add('list-group-item')
+      tweetList.appendChild(li)
+
+   })
+};
+
+
+displayTweets()
