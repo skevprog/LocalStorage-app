@@ -5,15 +5,27 @@ function showText(e) {
    e.preventDefault();
 
    let tweet = textArea.value;
-   let li = document.createElement('li');
+   const li = document.createElement('li');
+   const del = document.createElement('a');
 
-   li.textContent = tweet;
-   li.classList.add('list-group-item');
-   tweetList.appendChild(li);
-   textArea.value = '';
+   if (tweet.trim().length === 0) {
+      alert('You must enter a description inside the tweet box')
+   } else {
 
-   addTweetLocalStorage(tweet);
-
+      del.classList.add('delete');
+      del.textContent = 'X';
+      
+      li.classList.add('list-group-item', 'd-flex', 'justify-content-between');
+      li.textContent = tweet;
+      
+      
+      li.appendChild(del)
+      tweetList.appendChild(li);
+      textArea.value = '';
+      
+      addTweetLocalStorage(tweet);
+      
+   }
 }
 
 function getTweetsLocalStorage() {
@@ -41,5 +53,8 @@ function displayTweets() {
    })
 };
 
+function deleteTweet() {
+   e.preventDefault();
+}
 
 displayTweets()

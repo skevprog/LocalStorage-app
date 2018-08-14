@@ -25,6 +25,12 @@ main {
    background-color: #f5f5f5;
   } 
 
+  .delete {
+    cursor: pointer;
+    color: red !important;
+    font-weight: 600;
+  }
+
   .separation {
   margin: 20px 0;
   }
