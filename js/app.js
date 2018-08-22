@@ -1,6 +1,8 @@
 const textArea = document.querySelector('#tweet');
 const tweetList = document.getElementById('tweetList');
 
+displayTweets()
+
 function showText(e) {
    e.preventDefault();
 
@@ -11,13 +13,13 @@ function showText(e) {
    if (tweet.trim().length === 0) {
       alert('You must enter a description inside the tweet box')
    } else {
-
+      
       del.classList.add('delete');
       del.textContent = 'X';
-      
+      del.addEventListener('click', deleteTweet)
+
       li.classList.add('list-group-item', 'd-flex', 'justify-content-between');
       li.textContent = tweet;
-      
       
       li.appendChild(del)
       tweetList.appendChild(li);
@@ -41,20 +43,37 @@ function addTweetLocalStorage(tweet) {
 
 function displayTweets() {
    let tweets = getTweetsLocalStorage();
-   let li;
+   let li, del;
 
    tweets.forEach(tweet => {
 
-      li = document.createElement('li');
+      del = document.createElement('a');
+      del.classList.add('delete');
+      del.textContent = 'X';
+      
+      li = document.createElement('li'); 
       li.innerText = tweet;
-      li.classList.add('list-group-item')
+      li.classList.add('list-group-item','d-flex', 'justify-content-between')
+      li.appendChild(del)
       tweetList.appendChild(li)
+      del.addEventListener('click', deleteTweet)
 
-   })
+   });
+
 };
 
-function deleteTweet() {
-   e.preventDefault();
-}
+function deleteTweet(e) {
 
-displayTweets()
+   e.target.parentElement.remove();
+
+   let tweets = getTweetsLocalStorage(); 
+
+   tweets.forEach( (data, index) => {
+      if(e.target.parentElement.textContent.replace('X', '') === data) {
+         tweets.splice(index, 1);
+      } 
+   });
+   
+   localStorage.setItem('tweets', JSON.stringify(tweets));
+   
+}
